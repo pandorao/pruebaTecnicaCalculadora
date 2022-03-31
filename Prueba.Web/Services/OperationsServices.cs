@@ -1,4 +1,5 @@
 ﻿using Prueba.Web.Data;
+using Prueba.Web.Dtos;
 using Prueba.Web.Models;
 using Prueba.Web.Repositories.Interfaces;
 using System.ComponentModel.DataAnnotations;
@@ -21,14 +22,15 @@ namespace Prueba.Web.Repositories
             return _operationsRepository.GetAll();
         }
 
-        public async Task<ServiceResult<string>> AddAsync(int valueA, int valueB)
+        public async Task<ServiceResult<OperationResponseDto>> AddAsync(int valueA, int valueB)
         {
             var validationResults = new List<ValidationResult>();
             var operation = new Operation() { ValueA = valueA, ValueB = valueB, Result = valueA + valueB };
 
-            var result = new ServiceResult<string>();
+            var result = new ServiceResult<OperationResponseDto>();
             if (!IsValid(operation, validationResults))
             {
+                result.StatusCode = StatusCode.Warning;
                 AddErrors(result, validationResults);
                 return result;
             }
@@ -36,12 +38,18 @@ namespace Prueba.Web.Repositories
             var succeded = await _operationsRepository.AddAsync(operation);
             if (!succeded)
             {
+                result.StatusCode = StatusCode.Error;
                 validationResults.Add(new ValidationResult("No se pudo guardar correctamente la operacion"));
                 AddErrors(result, validationResults);
                 return result;
             }
 
-            result.ResponseObject = (await _fibonacciNumbersServices.AnyNumberAsync(operation.Result))? "Si esta en la serie fibonacci" : "No esta en la serie fibonacci";
+            result.StatusCode = StatusCode.Succeded;
+            result.ResponseObject = new OperationResponseDto()
+            {
+                ResultOperation = operation.Result,
+                FibonacciMessage = (await _fibonacciNumbersServices.AnyNumberAsync(operation.Result)) ? "Si esta en la serie fibonacci" : "No esta en la serie fibonacci"
+            };
             return result;
         }
 

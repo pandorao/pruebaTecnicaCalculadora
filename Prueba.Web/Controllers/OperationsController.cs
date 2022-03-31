@@ -23,7 +23,7 @@ namespace Prueba.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ServiceResult<string>> AddAsync(OperationDto operationDto)
+        public async Task<ServiceResult<OperationResponseDto>> AddAsync(OperationRequestDto operationDto)
         {
             return await _operationServices.AddAsync(operationDto.ValueA, operationDto.ValueB);
         }

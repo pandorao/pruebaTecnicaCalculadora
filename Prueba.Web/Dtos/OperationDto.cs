@@ -2,7 +2,7 @@
 
 namespace Prueba.Web.Dtos
 {
-    public class OperationDto
+    public class OperationRequestDto
     {
         [Required(ErrorMessage = "Valor A es requerido")]
         [Display(Name = "Valor A")]
@@ -11,5 +11,11 @@ namespace Prueba.Web.Dtos
         [Required(ErrorMessage = "Valor B es requerido")]
         [Display(Name = "Valor B")]
         public int ValueB { get; set; }
+    }
+
+    public class OperationResponseDto
+    {
+        public int ResultOperation { get; set; }
+        public string FibonacciMessage { get; set; }
     }
 }
