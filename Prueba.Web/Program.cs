@@ -14,6 +14,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IFibonacciNumbersRepository, FibonacciNumbersRepository>();
 builder.Services.AddScoped<IOperationsRepository, OperationsRepository>();
 
+builder.Services.AddScoped<IFibonacciNumbersServices, FibonacciNumbersServices>();
+builder.Services.AddScoped<IOperationsServices, OperationsServices>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
