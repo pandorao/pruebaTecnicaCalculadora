@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Prueba.Web.Data;
+using Prueba.Web.Repositories;
+using Prueba.Web.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SQLConnection")));
 
+builder.Services.AddScoped<IFibonacciNumbersRepository, FibonacciNumbersRepository>();
+builder.Services.AddScoped<IOperationsRepository, OperationsRepository>();
 
 builder.Services.AddControllersWithViews();
 
