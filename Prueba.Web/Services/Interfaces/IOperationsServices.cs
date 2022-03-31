@@ -5,6 +5,6 @@ namespace Prueba.Web.Repositories.Interfaces
     public interface IOperationsServices
     {
         IEnumerable<Operation> GetAll();
-        Task<bool> AddAsync(Operation operation);
+        Task<ServiceResult<bool>> AddAsync(int valueA, int valueB);
     }
 }
