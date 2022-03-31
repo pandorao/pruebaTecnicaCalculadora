@@ -21,12 +21,12 @@ namespace Prueba.Web.Repositories
             return _operationsRepository.GetAll();
         }
 
-        public async Task<ServiceResult<bool>> AddAsync(int valueA, int valueB)
+        public async Task<ServiceResult<string>> AddAsync(int valueA, int valueB)
         {
             var validationResults = new List<ValidationResult>();
             var operation = new Operation() { ValueA = valueA, ValueB = valueB, Result = valueA + valueB };
 
-            var result = new ServiceResult<bool>();
+            var result = new ServiceResult<string>();
             if (!IsValid(operation, validationResults))
             {
                 AddErrors(result, validationResults);
@@ -41,11 +41,7 @@ namespace Prueba.Web.Repositories
                 return result;
             }
 
-            if (await _fibonacciNumbersServices.AnyNumberAsync(operation.Result))
-            {
-                result.ResponseObject = true;
-            }
-
+            result.ResponseObject = (await _fibonacciNumbersServices.AnyNumberAsync(operation.Result))? "Si esta en la serie fibonacci" : "No esta en la serie fibonacci";
             return result;
         }
 
