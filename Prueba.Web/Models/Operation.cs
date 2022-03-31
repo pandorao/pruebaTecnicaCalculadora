@@ -9,14 +9,14 @@ namespace Prueba.Web.Models
 
         [Required(ErrorMessage = "Valor A es requerido")]
         [Display(Name = "Valor A")]
-        public int ValueA { get; set; }
+        public long ValueA { get; set; }
 
         [Required(ErrorMessage = "Valor B es requerido")]
         [Display(Name = "Valor B")]
-        public int ValueB { get; set; }
+        public long ValueB { get; set; }
 
         [Required(ErrorMessage = "Resultado es requerido")]
         [Display(Name = "Resultado")]
-        public int Result { get; set; }
+        public long Result { get; set; }
     }
 }

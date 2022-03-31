@@ -15,7 +15,7 @@ namespace Prueba.Web.Repositories
             _fibonacciNumbersRepository = fibonacciNumbersRepository;
         }
 
-        public async Task<bool> AnyNumberAsync(int number)
+        public async Task<bool> AnyNumberAsync(long number)
         {
             return await _fibonacciNumbersRepository.AnyAsync(x => x.Number == number);
         }

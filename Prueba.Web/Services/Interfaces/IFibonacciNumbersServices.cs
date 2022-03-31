@@ -5,7 +5,7 @@ namespace Prueba.Web.Repositories.Interfaces
 {
     public interface IFibonacciNumbersServices
     {
-        Task<bool> AnyNumberAsync(int i);
+        Task<bool> AnyNumberAsync(long i);
 
         Task<bool> AddAsync(FibonacciNumber fibonacciNumber);
     }

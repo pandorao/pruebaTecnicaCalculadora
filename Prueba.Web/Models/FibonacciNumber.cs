@@ -8,6 +8,6 @@ namespace Prueba.Web.Models
 
         [Required(ErrorMessage = "El numero es requerido")]
         [Display(Name = "Numero")] 
-        public int Number { get; set; }
+        public long Number { get; set; }
     }
 }

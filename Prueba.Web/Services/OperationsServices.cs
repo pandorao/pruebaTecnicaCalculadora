@@ -22,7 +22,7 @@ namespace Prueba.Web.Repositories
             return _operationsRepository.GetAll();
         }
 
-        public async Task<ServiceResult<OperationResponseDto>> AddAsync(int valueA, int valueB)
+        public async Task<ServiceResult<OperationResponseDto>> AddAsync(long valueA, long valueB)
         {
             var validationResults = new List<ValidationResult>();
             var operation = new Operation() { ValueA = valueA, ValueB = valueB, Result = valueA + valueB };
